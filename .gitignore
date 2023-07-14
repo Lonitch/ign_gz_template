@@ -1,3 +1,60 @@
+log/
+build/
+install/
+bin/
+lib/
+.vscode/
+
+# Visual Studio
+*.VC.db
+*.VC.opendb
+
+# Compiled Object files
+blender/*.blend1
+*.slo
+*.lo
+*.o
+*.obj
+*.exp
+*.iobj
+*.ipdb
+*.pdb
+
+# Logs
+*.lastbuildstate
+*.tlog
+*.log
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+
+# Fortran module files
+*.mod
+
+# Python cache files
+*.pyc
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+
+# Executables
+*.exe
+*.out
+*.app
+
+# HTML
+*.html
+
+# Mac
+.DS_Store
+
 # Prerequisites
 *.d
 

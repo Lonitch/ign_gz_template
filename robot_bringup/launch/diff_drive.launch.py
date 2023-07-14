@@ -27,9 +27,9 @@ from launch_ros.actions import Node
 
 
 def generate_launch_description():
-    pkg_project_bringup = get_package_share_directory('ros_gz_example_bringup')
-    pkg_project_gazebo = get_package_share_directory('ros_gz_example_gazebo')
-    pkg_project_description = get_package_share_directory('ros_gz_example_description')
+    pkg_project_bringup = get_package_share_directory('robot_bringup')
+    pkg_project_gazebo = get_package_share_directory('robot_gazebo')
+    pkg_project_description = get_package_share_directory('robot_description')
     pkg_ros_gz_sim = get_package_share_directory('ros_gz_sim')
 
     # Load the SDF file from "description" package
@@ -71,7 +71,7 @@ def generate_launch_description():
         package='ros_gz_bridge',
         executable='parameter_bridge',
         parameters=[{
-            'config_file': os.path.join(pkg_project_bringup, 'config', 'ros_gz_example_bridge.yaml'),
+            'config_file': os.path.join(pkg_project_bringup, 'config', 'robot_bridge.yaml'),
             'qos_overrides./tf_static.publisher.durability': 'transient_local',
         }],
         output='screen'

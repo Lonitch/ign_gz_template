@@ -1,78 +1,53 @@
 # ros_gz_project_template
-A template project integrating ROS and Gazebo simulator
+A template project integrating ROS2 and Gazebo (Fortress) simulator
 
 ## Included packages
 
-* `ros_gz_example_description` - holds the sdf description of the simulated system and any other assets
-
-* `ros_gz_example_gazebo` - holds gazebo specific code and configurations.  Namely this is where systems end up.
-
-* `ros_gz_example_application` - holds ros2 specific code and configurations
-
-* `ros_gz_example_bringup` - holds launch files and high level utilities
+* `robot_description` - holds the SDF/URDF description of the simulated system and any other assets
+* `robot_gazebo` - holds gazebo specific code and configurations.  Namely this is where systems end up.
+* `robot_application` - holds ros2 specific code and configurations
+* `robot_bringup` - holds launch files and high level utilities
 
 
 ## Install
-### Use as template
-Directly `Use this template` and create your project repository on github.
-
-### On Host System
-##### Requirements
-On Ubuntu Jammy
-
+### Requirements
+On Ubuntu Jammy(22.04)
 1. Install [ROS 2 Humble](https://docs.ros.org/en/humble/index.html)
+2. Install [Gazebo Fortress](https://gazebosim.org/docs/fortress)
+3. Install necessary tools
+```bash
+sudo apt install python3-vcstool python3-colcon-common-extensions git wget
+sudo apt install ros-humble-gz-ros ros-humble-gz-ros-bridge ros-humble-sdformat-urdf
+```
 
-1. Install [Gazebo Garden](https://gazebosim.org/docs/garden)
+### Usage
+1. Create a workspace, and clone the repository:
+```bash
+mkdir -p ~/template_ws/src
+cd ~/template_ws/src
+git clone https://github.com/Lonitch/ign_gz_template.git
+```
+2. Set the Gazebo version to Fortress:
+```bash
+export GZ_VERSION=fortress
+```
 
-1. Install necessary tools
+3. Install ROS dependencies
+```bash
+sudo rosdep init
+rosdep update
+rosdep install --from-paths src --ignore-src -r -y -i
+```
 
-    `sudo apt install python3-vcstool python3-colcon-common-extensions git wget`
+4. Build and install
 
-##### Usage
+```bash
+cd ~/template_ws
+colcon build --cmake-args -DBUILD_TESTING=ON
+```
 
-1. Create a workspace, for example:
-
-    ```
-    mkdir -p ~/template_ws/src
-    cd ~/template_ws/src
-    ```
-
-1. Clone the template:
-
-    ```
-    git clone 
-    wget https://raw.githubusercontent.com/gazebosim/ros_gz_project_template/main/template_workspace.yaml
-    vcs import < template_workspace.yaml
-    cd ~/template_ws
-    ```
-
-1. Set the Gazebo version to Garden:
-
-    ```
-    export GZ_VERSION=garden
-    ```
-
-1. Install ROS dependencies
-
-    ```
-    sudo rosdep init
-    rosdep update
-    rosdep install --from-paths src --ignore-src -r -y -i
-    ```
-
-1. Build and install
-
-    ```
-    cd ~/template_ws
-    colcon build --cmake-args -DBUILD_TESTING=ON
-    ```
-
-##### Run
-
+### Run
 1. Source the workspace
-
     `. ~/template_ws/install/setup.sh`
-
-1. Launch the simulation
-
-    `ros2 launch ros_gz_example_bringup example.launch.py`
+2. Launch the simulation
+    `ros2 launch robot_bringup example.launch.py`
