@@ -27,6 +27,8 @@ mkdir -p ~/template_ws/src
 cd ~/template_ws/src
 git clone https://github.com/Lonitch/ign_gz_template.git
 ```
+It is recommended to remove `.git` folder after cloning in order to build your own history of dev.
+
 2. Set the Gazebo version to Fortress:
 ```bash
 export GZ_VERSION=fortress
